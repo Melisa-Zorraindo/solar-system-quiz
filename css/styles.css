@@ -22,6 +22,13 @@ h1 {
 .img-container {
   height: 200px;
   width: 350px;
+  margin: 0 0 2rem;
+}
+
+figcaption {
+  background-color: #242824;
+  text-align: center;
+  font-size: 1.1rem;
 }
 
 img {
@@ -40,6 +47,7 @@ img {
 
 .question-box p {
   max-width: 350px;
+  line-height: 2rem;
 }
 
 .options-container {
