@@ -2,6 +2,7 @@ import { questionList } from "./data.js";
 
 const mainContainer = document.querySelector(".main-content");
 
+//render page content
 function renderHTML(questionList) {
   //create question container
   const questionBox = document.createElement("div");
@@ -124,3 +125,16 @@ function renderHTML(questionList) {
 }
 
 renderHTML(questionList);
+
+//points system
+let currentPoints = 0;
+const radioBtns = document.querySelectorAll("input[type='radio']");
+const correctOption = questionList[0].correctAnswer;
+
+radioBtns.forEach((button) => {
+  button.addEventListener("change", () => {
+    //set variable to 0 every time user changes answer to avoid adding more than one point per question
+    button.value === correctOption ? currentPoints++ : (currentPoints = 0);
+    console.log(currentPoints);
+  });
+});
