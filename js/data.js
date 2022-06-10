@@ -1,4 +1,4 @@
-const questionList = [
+export const questionList = [
   {
     image: "../assets/images/nasa-JHyiw_dpALk-sun.jpg",
     altText: "Close up of the Sun by Nasa",

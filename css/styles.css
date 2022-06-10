@@ -1,3 +1,11 @@
+:root {
+  --default: "a";
+  --option-a: "a";
+  --option-b: "b";
+  --option-c: "c";
+  --background-color: #fff;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -82,7 +90,7 @@ li label::before {
   content: " ";
   height: 3.5rem;
   width: 3.5rem;
-  background-color: #fff;
+  background-color: var(--background-color);
   border-radius: 2rem;
   position: absolute;
   left: 0;
@@ -91,7 +99,7 @@ li label::before {
 }
 
 li label::after {
-  content: "a";
+  content: var(--option-c);
   color: #000;
   position: absolute;
   left: 1rem;
@@ -106,9 +114,9 @@ li label p {
   padding-left: 3rem;
 }
 
-input[type="radio"] {
+/* input[type="radio"] {
   display: none;
-}
+} */
 
 .btn-container {
   text-align: right;
