@@ -1,8 +1,4 @@
 :root {
-  --default: "a";
-  --option-a: "a";
-  --option-b: "b";
-  --option-c: "c";
   --background-color: #fff;
 }
 
@@ -99,7 +95,7 @@ li label::before {
 }
 
 li label::after {
-  content: var(--option-c);
+  content: attr(data-content);
   color: #000;
   position: absolute;
   left: 1rem;

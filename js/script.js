@@ -58,6 +58,7 @@ function renderHTML(questionList) {
   //create first label
   const labelOne = document.createElement("label");
   labelOne.htmlFor = "question-one";
+  labelOne.setAttribute("data-content", "a");
   listItemOne.append(labelOne);
 
   //create first option
@@ -80,6 +81,7 @@ function renderHTML(questionList) {
   //create second label
   const labelTwo = document.createElement("label");
   labelTwo.htmlFor = "question-two";
+  labelTwo.setAttribute("data-content", "b");
   listItemTwo.append(labelTwo);
 
   //create second option
@@ -102,6 +104,7 @@ function renderHTML(questionList) {
   //create third label
   const labelThree = document.createElement("label");
   labelThree.htmlFor = "question-three";
+  labelThree.setAttribute("data-content", "c");
   listItemThree.append(labelThree);
 
   //create third option
