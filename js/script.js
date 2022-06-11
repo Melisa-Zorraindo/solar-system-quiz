@@ -120,6 +120,7 @@ function renderHTML(questionList) {
 
   //create button
   const nexQuestionBtn = document.createElement("button");
+  nexQuestionBtn.id = "next";
   nexQuestionBtn.innerHTML = "NEXT >>";
   nexQuestionBtnContainer.append(nexQuestionBtn);
 }
@@ -137,4 +138,9 @@ radioBtns.forEach((button) => {
     button.value === correctOption ? currentPoints++ : (currentPoints = 0);
     console.log(currentPoints);
   });
+});
+
+const nextQuestion = document.querySelector("#next");
+nextQuestion.addEventListener("click", () => {
+  console.log("test");
 });
