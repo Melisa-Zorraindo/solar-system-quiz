@@ -116,6 +116,6 @@ export const questionList = [
       "4 000 000 kilometers",
       "239 000 kilometers",
     ],
-    correctAnswer: "1846",
+    correctAnswer: "350 000 kilometers",
   },
 ];

@@ -14,8 +14,10 @@ startBtn.addEventListener("click", () => {
   mainContainer.append(loaderContainer);
 
   //set timer to render html after loading bar completed
-  setInterval(renderHTML, 3000, questionList);
+  setTimeout(renderHTML, 3000, questionList);
 });
+
+let questionNumber = 0;
 
 //render page content
 function renderHTML(questionList) {
@@ -38,23 +40,23 @@ function renderHTML(questionList) {
 
   //create image
   const picture = document.createElement("img");
-  picture.src = questionList[0].image;
-  picture.alt = questionList[0].altText;
+  picture.src = questionList[questionNumber].image;
+  picture.alt = questionList[questionNumber].altText;
   imgContainer.append(picture);
 
   //create caption
   const pictureCaption = document.createElement("figcaption");
-  pictureCaption.innerHTML = questionList[0].altText;
+  pictureCaption.innerHTML = questionList[questionNumber].altText;
   imgContainer.append(pictureCaption);
 
   //create intro
   const introParagraph = document.createElement("p");
-  introParagraph.innerHTML = questionList[0].intro;
+  introParagraph.innerHTML = questionList[questionNumber].intro;
   questionBox.append(introParagraph);
 
   //create question
   const question = document.createElement("p");
-  question.innerHTML = questionList[0].question;
+  question.innerHTML = questionList[questionNumber].question;
   questionBox.append(question);
 
   //create options container
@@ -75,7 +77,7 @@ function renderHTML(questionList) {
   radioBtnOne.type = "radio";
   radioBtnOne.name = "answer";
   radioBtnOne.id = "question-one";
-  radioBtnOne.value = questionList[0].options[0];
+  radioBtnOne.value = questionList[questionNumber].options[0];
   listItemOne.append(radioBtnOne);
 
   //create first label
@@ -86,7 +88,7 @@ function renderHTML(questionList) {
 
   //create first option
   const optionOne = document.createElement("p");
-  optionOne.innerHTML = questionList[0].options[0];
+  optionOne.innerHTML = questionList[questionNumber].options[0];
   labelOne.append(optionOne);
 
   //create second list element
@@ -98,7 +100,7 @@ function renderHTML(questionList) {
   radioBtnTwo.type = "radio";
   radioBtnTwo.name = "answer";
   radioBtnTwo.id = "question-two";
-  radioBtnTwo.value = questionList[0].options[1];
+  radioBtnTwo.value = questionList[questionNumber].options[1];
   listItemTwo.append(radioBtnTwo);
 
   //create second label
@@ -109,7 +111,7 @@ function renderHTML(questionList) {
 
   //create second option
   const optionTwo = document.createElement("p");
-  optionTwo.innerHTML = questionList[0].options[1];
+  optionTwo.innerHTML = questionList[questionNumber].options[1];
   labelTwo.append(optionTwo);
 
   //create third list element
@@ -121,7 +123,7 @@ function renderHTML(questionList) {
   radioBtnThree.type = "radio";
   radioBtnThree.name = "answer";
   radioBtnThree.id = "question-three";
-  radioBtnThree.value = questionList[0].options[2];
+  radioBtnThree.value = questionList[questionNumber].options[2];
   listItemThree.append(radioBtnThree);
 
   //create third label
@@ -132,7 +134,7 @@ function renderHTML(questionList) {
 
   //create third option
   const optionThree = document.createElement("p");
-  optionThree.innerHTML = questionList[0].options[2];
+  optionThree.innerHTML = questionList[questionNumber].options[2];
   labelThree.append(optionThree);
 
   //create button container
@@ -146,7 +148,7 @@ function renderHTML(questionList) {
   nexQuestionBtn.innerHTML = "NEXT >>";
   nexQuestionBtnContainer.append(nexQuestionBtn);
 
-  //points system
+  //select buttons for points management
   const radioBtns = document.querySelectorAll("input[type='radio']");
 
   radioBtns.forEach((button) => {
@@ -160,16 +162,26 @@ function renderHTML(questionList) {
   nextQuestion.addEventListener("click", () => {
     renderNextQuestion();
   });
+
+  //add question number
+  questionNumber++;
 }
 
+//points system
+let currentPoints;
+let totalPoints = 0;
 function countPoints(button) {
-  let currentPoints = 0;
-  const correctOption = questionList[0].correctAnswer;
+  currentPoints = 0;
   //set variable to 0 every time user changes answer to avoid adding more than one point per question
+  const correctOption = questionList[questionNumber - 1].correctAnswer;
   button.value === correctOption ? currentPoints++ : (currentPoints = 0);
   console.log(currentPoints);
+  return currentPoints;
+  // return currentPoints;
 }
 
 function renderNextQuestion() {
-  console.log("test");
+  totalPoints += currentPoints;
+  console.log("total points", totalPoints);
+  renderHTML(questionList);
 }
