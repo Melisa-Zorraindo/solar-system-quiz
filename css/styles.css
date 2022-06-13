@@ -144,3 +144,29 @@ button:hover {
     transform: rotateY(0);
   }
 }
+
+.loader {
+  position: relative;
+  height: 0.8rem;
+  width: 100%;
+  border: 2px solid #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.loader::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(187deg, #310f38 0%, #821e97 63%, #971e84 100%);
+  animation: 3s progression linear;
+}
+
+@keyframes progression {
+  to {
+    width: 100%;
+  }
+}

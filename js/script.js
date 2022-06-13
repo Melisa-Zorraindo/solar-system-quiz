@@ -1,9 +1,31 @@
 import { questionList } from "./data.js";
 
+const startBtn = document.querySelector("#start");
 const mainContainer = document.querySelector(".main-content");
+
+startBtn.addEventListener("click", () => {
+  const heading = document.querySelector("h1");
+  heading.innerHTML = "Loading...";
+
+  //clear html and create loader bar
+  mainContainer.innerHTML = "";
+  const loaderContainer = document.createElement("span");
+  loaderContainer.classList.add("loader");
+  mainContainer.append(loaderContainer);
+
+  //set timer to render html after loading bar completed
+  setInterval(renderHTML, 3000, questionList);
+});
 
 //render page content
 function renderHTML(questionList) {
+  //update heading
+  const newHeading = document.querySelector("h1");
+  newHeading.innerHTML = "Choose the correct answer";
+
+  //clear html to render new one
+  mainContainer.innerHTML = "";
+
   //create question container
   const questionBox = document.createElement("div");
   questionBox.classList.add("question-box");
@@ -123,24 +145,31 @@ function renderHTML(questionList) {
   nexQuestionBtn.id = "next";
   nexQuestionBtn.innerHTML = "NEXT >>";
   nexQuestionBtnContainer.append(nexQuestionBtn);
+
+  //points system
+  const radioBtns = document.querySelectorAll("input[type='radio']");
+
+  radioBtns.forEach((button) => {
+    button.addEventListener("change", () => {
+      countPoints(button);
+    });
+  });
+
+  //go to next question
+  const nextQuestion = document.querySelector("#next");
+  nextQuestion.addEventListener("click", () => {
+    renderNextQuestion();
+  });
 }
 
-renderHTML(questionList);
+function countPoints(button) {
+  let currentPoints = 0;
+  const correctOption = questionList[0].correctAnswer;
+  //set variable to 0 every time user changes answer to avoid adding more than one point per question
+  button.value === correctOption ? currentPoints++ : (currentPoints = 0);
+  console.log(currentPoints);
+}
 
-//points system
-let currentPoints = 0;
-const radioBtns = document.querySelectorAll("input[type='radio']");
-const correctOption = questionList[0].correctAnswer;
-
-radioBtns.forEach((button) => {
-  button.addEventListener("change", () => {
-    //set variable to 0 every time user changes answer to avoid adding more than one point per question
-    button.value === correctOption ? currentPoints++ : (currentPoints = 0);
-    console.log(currentPoints);
-  });
-});
-
-const nextQuestion = document.querySelector("#next");
-nextQuestion.addEventListener("click", () => {
+function renderNextQuestion() {
   console.log("test");
-});
+}
