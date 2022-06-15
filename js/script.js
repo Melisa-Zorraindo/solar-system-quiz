@@ -17,9 +17,8 @@ startBtn.addEventListener("click", () => {
   setTimeout(renderHTML, 3000, questionList);
 });
 
-let questionNumber = 0;
-
 //render page content
+let questionNumber = 0;
 function renderHTML(questionList) {
   //update heading
   const newHeading = document.querySelector("h1");
@@ -163,8 +162,8 @@ function renderHTML(questionList) {
     renderNextQuestion();
   });
 
-  //add question number
-  questionNumber++;
+  //render end game content when last question reached or prep for next question
+  questionNumber === 10 ? renderLastContent() : questionNumber++;
 }
 
 //points system
@@ -176,12 +175,25 @@ function countPoints(button) {
   const correctOption = questionList[questionNumber - 1].correctAnswer;
   button.value === correctOption ? currentPoints++ : (currentPoints = 0);
   console.log(currentPoints);
-  return currentPoints;
-  // return currentPoints;
 }
 
 function renderNextQuestion() {
-  totalPoints += currentPoints;
-  console.log("total points", totalPoints);
-  renderHTML(questionList);
+  //checked an option was chosen
+  const answerOption = document.querySelectorAll("input[type='radio']");
+  if (
+    answerOption[0].checked ||
+    answerOption[1].checked ||
+    answerOption[2].checked
+  ) {
+    //add current points to total before rendering next question
+    totalPoints += currentPoints;
+    console.log("total points", totalPoints);
+    renderHTML(questionList);
+  } else {
+    alert("Please choose an answer");
+  }
+}
+
+function renderLastContent() {
+  console.log("test");
 }
