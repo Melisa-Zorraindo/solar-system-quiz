@@ -86,6 +86,10 @@ li label {
 
 li label:hover {
   cursor: pointer;
+  background-color: var(--white);
+  color: var(--almost-black);
+  transition: all 0.3s linear;
+  font-weight: bold;
 }
 
 li label::before {
@@ -102,7 +106,9 @@ li label::before {
 }
 
 li label:hover::before {
-  background-color: var(--almost-black);
+  background: var(--gradient);
+  transform: scale(1.1);
+  top: 0;
 }
 
 li label::after {
