@@ -144,7 +144,8 @@ function renderHTML(questionList) {
   //create button
   const nexQuestionBtn = document.createElement("button");
   nexQuestionBtn.id = "next";
-  nexQuestionBtn.innerHTML = "NEXT";
+  nexQuestionBtn.classList.add("next");
+  nexQuestionBtn.innerHTML = "&DDotrahd;";
   nexQuestionBtnContainer.append(nexQuestionBtn);
 
   //select buttons for points management
