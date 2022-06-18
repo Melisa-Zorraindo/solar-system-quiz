@@ -96,6 +96,14 @@ li label:hover {
   transition: var(--transitions);
 }
 
+.selected-label {
+  background: var(--gradient);
+}
+
+.selected-label:hover {
+  color: var(--white);
+}
+
 li label::before {
   content: " ";
   height: 3rem;

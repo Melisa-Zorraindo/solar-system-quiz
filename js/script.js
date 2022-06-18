@@ -20,6 +20,10 @@ startBtn.addEventListener("click", () => {
 //render page content
 let questionNumber = 0;
 function renderHTML(questionList) {
+  //update flex container styles on body
+  //aplies when game has been played before
+  // document.body.style.flexDirection = "column";
+
   //update heading
   const newHeading = document.querySelector("h1");
   newHeading.innerHTML = "Choose the correct answer";
@@ -175,7 +179,9 @@ function countPoints(button) {
   //set variable to 0 every time user changes answer to avoid adding more than one point per question
   const correctOption = questionList[questionNumber - 1].correctAnswer;
   button.value === correctOption ? currentPoints++ : (currentPoints = 0);
-  console.log(currentPoints);
+
+  //styles for client feedback
+  updateSelectedOptionStyles();
 }
 
 function renderNextQuestion() {
@@ -188,7 +194,6 @@ function renderNextQuestion() {
   ) {
     //add current points to total before rendering next question
     totalPoints += currentPoints;
-    console.log("total points", totalPoints);
     renderHTML(questionList);
   } else {
     alert("Please choose an answer");
@@ -218,4 +223,14 @@ function renderLastContent() {
 
   //update flex container styles on body
   document.body.style.flexDirection = "column";
+}
+
+function updateSelectedOptionStyles() {
+  //update style for selected option and remove style when button not checked
+  const selectedOption = document.querySelectorAll("input[type='radio']");
+  for (let i = 0; i < selectedOption.length; i++) {
+    selectedOption[i].checked
+      ? selectedOption[i].nextSibling.classList.add("selected-label")
+      : selectedOption[i].nextSibling.classList.remove("selected-label");
+  }
 }
