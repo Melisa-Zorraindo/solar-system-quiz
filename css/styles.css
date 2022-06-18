@@ -196,27 +196,21 @@ input[type="radio"] {
 }
 
 .loader {
-  position: relative;
-  height: 0.8rem;
-  width: 100%;
-  border: 2px solid var(--white);
-  border-radius: 1rem;
-  overflow: hidden;
+  width: 2rem;
+  height: 2rem;
+  border: 3px solid var(--white);
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  /* box-sizing: border-box; */
+  animation: rotation 1s linear infinite;
 }
 
-.loader::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 0;
-  background: var(--gradient);
-  animation: 3s progression linear;
-}
-
-@keyframes progression {
-  to {
-    width: 100%;
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

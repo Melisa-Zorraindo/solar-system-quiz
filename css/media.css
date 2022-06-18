@@ -21,4 +21,37 @@
   li {
     width: 20rem;
   }
+
+  .loader {
+    position: relative;
+    height: 0.8rem;
+    width: 100%;
+    border: 2px solid var(--white);
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .loader::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 0;
+    background: var(--gradient);
+    animation: 3s progression linear;
+  }
+
+  @keyframes progression {
+    to {
+      width: 100%;
+    }
+  }
+
+  /*stop rotation*/
+  @keyframes rotation {
+    100% {
+      transform: rotate(0deg);
+    }
+  }
 }
