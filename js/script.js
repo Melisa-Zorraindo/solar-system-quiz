@@ -160,11 +160,11 @@ function renderHTML(questionList) {
   //go to next question
   const nextQuestion = document.querySelector("#next");
   nextQuestion.addEventListener("click", () => {
-    renderNextQuestion();
+    //render next question or last content when no more questions available
+    questionNumber < 10 ? renderNextQuestion() : renderLastContent();
   });
 
-  //render end game content when last question reached or prep for next question
-  questionNumber === 10 ? renderLastContent() : questionNumber++;
+  questionNumber++;
 }
 
 //points system
@@ -196,5 +196,26 @@ function renderNextQuestion() {
 }
 
 function renderLastContent() {
-  console.log("test");
+  //update heading
+  const lastHeading = document.querySelector("h1");
+  lastHeading.innerHTML = "Congrats!";
+
+  //clear content to create new
+  mainContainer.innerHTML = "";
+  mainContainer.classList.add("question-box");
+
+  //print number of correct answers
+  const resultsPara = document.createElement("p");
+  resultsPara.innerHTML = `You got ${totalPoints}/10 questions right`;
+  mainContainer.append(resultsPara);
+
+  //create button to restart the game
+  const restartBtn = document.createElement("a");
+  restartBtn.setAttribute("href", "index.html");
+  restartBtn.classList.add("start");
+  restartBtn.innerHTML = "PLAY AGAIN";
+  document.body.append(restartBtn);
+
+  //update flex container styles on body
+  document.body.style.flexDirection = "column";
 }
