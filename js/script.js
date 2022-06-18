@@ -179,9 +179,18 @@ function countPoints(button) {
   //set variable to 0 every time user changes answer to avoid adding more than one point per question
   const correctOption = questionList[questionNumber - 1].correctAnswer;
   button.value === correctOption ? currentPoints++ : (currentPoints = 0);
-
   //styles for client feedback
   updateSelectedOptionStyles();
+}
+
+function updateSelectedOptionStyles() {
+  //update style for selected option and remove style when button not checked
+  const selectedOption = document.querySelectorAll("input[type='radio']");
+  for (let i = 0; i < selectedOption.length; i++) {
+    selectedOption[i].checked
+      ? selectedOption[i].nextSibling.classList.add("selected-label")
+      : selectedOption[i].nextSibling.classList.remove("selected-label");
+  }
 }
 
 function renderNextQuestion() {
@@ -201,9 +210,17 @@ function renderNextQuestion() {
 }
 
 function renderLastContent() {
+  //add point from last question if applicable
+  totalPoints += currentPoints;
   //update heading
   const lastHeading = document.querySelector("h1");
-  lastHeading.innerHTML = "Congrats!";
+  if (totalPoints < 5) {
+    lastHeading.innerHTML = "Better luck next time!";
+  } else if (totalPoints >= 5 && totalPoints < 8) {
+    lastHeading.innerHTML = "Really good!";
+  } else if (totalPoints >= 8) {
+    lastHeading.innerHTML = "Congrats!";
+  }
 
   //clear content to create new
   mainContainer.innerHTML = "";
@@ -212,6 +229,8 @@ function renderLastContent() {
   //print number of correct answers
   const resultsPara = document.createElement("p");
   resultsPara.innerHTML = `You got ${totalPoints}/10 questions right`;
+  resultsPara.style.textAlign = "center";
+  resultsPara.style.fontSize = "1.2rem";
   mainContainer.append(resultsPara);
 
   //create button to restart the game
@@ -223,14 +242,4 @@ function renderLastContent() {
 
   //update flex container styles on body
   document.body.style.flexDirection = "column";
-}
-
-function updateSelectedOptionStyles() {
-  //update style for selected option and remove style when button not checked
-  const selectedOption = document.querySelectorAll("input[type='radio']");
-  for (let i = 0; i < selectedOption.length; i++) {
-    selectedOption[i].checked
-      ? selectedOption[i].nextSibling.classList.add("selected-label")
-      : selectedOption[i].nextSibling.classList.remove("selected-label");
-  }
 }

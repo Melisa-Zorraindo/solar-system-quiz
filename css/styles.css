@@ -25,10 +25,6 @@ h1 {
   text-align: center;
 }
 
-p {
-  text-align: center;
-}
-
 .img-container {
   height: 150px;
   width: 100%;
@@ -58,7 +54,6 @@ img {
 .question-box p {
   max-width: 350px;
   line-height: 1.5rem;
-  text-align: left;
 }
 
 .options-container {
@@ -215,7 +210,6 @@ input[type="radio"] {
   border-bottom-color: transparent;
   border-radius: 50%;
   display: inline-block;
-  /* box-sizing: border-box; */
   animation: rotation 1s linear infinite;
 }
 
