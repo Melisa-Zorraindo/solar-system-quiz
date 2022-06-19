@@ -15,6 +15,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   height: 100vh;
   background-image: url("/assets/images/background-gb3a5ca660_1920.jpg");
   color: var(--white);
@@ -43,7 +44,8 @@ img {
   border-radius: 2rem;
 }
 
-.question-box {
+.question-box,
+.results-box {
   background: var(--almost-black);
   padding: 1rem;
   border-radius: 2rem;
@@ -51,8 +53,11 @@ img {
   margin: auto;
 }
 
+.results-box {
+  max-width: 100%;
+}
+
 .question-box p {
-  max-width: 350px;
   line-height: 1.5rem;
 }
 
@@ -148,7 +153,12 @@ input[type="radio"] {
   margin-bottom: 2rem;
 }
 
-.start {
+.restart-container {
+  margin: 5rem auto 3rem;
+}
+
+.start,
+.play-again {
   font: 1.5rem "Gruppo", cursive;
   padding: 0.5rem 3rem;
   background: var(--gradient);
@@ -160,13 +170,15 @@ input[type="radio"] {
   transition: var(--transitions);
 }
 
-.start:hover {
+.start:hover,
+.play-again:hover {
   background: var(--white);
   color: var(--almost-black);
   font-weight: bold;
 }
 
-.start::after {
+.start::after,
+.play-again::after {
   content: ">>";
   line-height: 2.5rem;
   font-weight: bold;
@@ -183,7 +195,14 @@ input[type="radio"] {
   opacity: 0;
 }
 
-.start:hover::after {
+.play-again::after {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start:hover::after,
+.play-again:hover::after {
   opacity: 1;
   right: -1%;
 }
@@ -224,4 +243,16 @@ input[type="radio"] {
 
 a {
   text-decoration: none;
+}
+
+footer {
+  flex: 0 0 100%;
+  text-align: center;
+  align-self: flex-end;
+  margin-bottom: 1rem;
+}
+
+footer a {
+  color: var(--white);
+  text-decoration: underline;
 }

@@ -205,12 +205,13 @@ function renderNextQuestion() {
     totalPoints += currentPoints;
     renderHTML(questionList);
   } else {
+    //alert user an option has to be chosen
     alert("Please choose an answer");
   }
 }
 
 function renderLastContent() {
-  //add point from last question if applicable
+  //add point from last question
   totalPoints += currentPoints;
   //update heading
   const lastHeading = document.querySelector("h1");
@@ -224,7 +225,7 @@ function renderLastContent() {
 
   //clear content to create new
   mainContainer.innerHTML = "";
-  mainContainer.classList.add("question-box");
+  mainContainer.classList.add("results-box");
 
   //print number of correct answers
   const resultsPara = document.createElement("p");
@@ -233,13 +234,19 @@ function renderLastContent() {
   resultsPara.style.fontSize = "1.2rem";
   mainContainer.append(resultsPara);
 
+  //create restart button container
+  const restartBtnContainer = document.createElement("div");
+  restartBtnContainer.classList.add("restart-container");
+  mainContainer.append(restartBtnContainer);
+
   //create button to restart the game
   const restartBtn = document.createElement("a");
   restartBtn.setAttribute("href", "index.html");
-  restartBtn.classList.add("start");
+  restartBtn.classList.add("play-again");
   restartBtn.innerHTML = "PLAY AGAIN";
-  document.body.append(restartBtn);
-
-  //update flex container styles on body
-  document.body.style.flexDirection = "column";
+  // document.body.append(restartBtn);
+  restartBtnContainer.append(restartBtn);
+  //adjust flex container styles on body
+  // document.body.style.flexDirection = "column";
+  mainContainer.style.flexDirection = "column";
 }
