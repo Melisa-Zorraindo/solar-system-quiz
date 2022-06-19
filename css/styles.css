@@ -58,6 +58,7 @@ img {
 }
 
 .question-box p {
+  max-width: 350px;
   line-height: 1.5rem;
 }
 
@@ -197,7 +198,7 @@ input[type="radio"] {
 
 .play-again::after {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
 }
 

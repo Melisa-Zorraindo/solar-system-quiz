@@ -20,10 +20,6 @@ startBtn.addEventListener("click", () => {
 //render page content
 let questionNumber = 0;
 function renderHTML(questionList) {
-  //update flex container styles on body
-  //aplies when game has been played before
-  // document.body.style.flexDirection = "column";
-
   //update heading
   const newHeading = document.querySelector("h1");
   newHeading.innerHTML = "Choose the correct answer";
@@ -149,7 +145,7 @@ function renderHTML(questionList) {
   const nexQuestionBtn = document.createElement("button");
   nexQuestionBtn.id = "next";
   nexQuestionBtn.classList.add("next");
-  nexQuestionBtn.innerHTML = "&DDotrahd;";
+  nexQuestionBtn.innerHTML = "&#8680;";
   nexQuestionBtnContainer.append(nexQuestionBtn);
 
   //select buttons for points management
@@ -176,9 +172,11 @@ let currentPoints;
 let totalPoints = 0;
 function countPoints(button) {
   currentPoints = 0;
+
   //set variable to 0 every time user changes answer to avoid adding more than one point per question
   const correctOption = questionList[questionNumber - 1].correctAnswer;
   button.value === correctOption ? currentPoints++ : (currentPoints = 0);
+
   //styles for client feedback
   updateSelectedOptionStyles();
 }
@@ -244,9 +242,8 @@ function renderLastContent() {
   restartBtn.setAttribute("href", "index.html");
   restartBtn.classList.add("play-again");
   restartBtn.innerHTML = "PLAY AGAIN";
-  // document.body.append(restartBtn);
   restartBtnContainer.append(restartBtn);
+
   //adjust flex container styles on body
-  // document.body.style.flexDirection = "column";
   mainContainer.style.flexDirection = "column";
 }
