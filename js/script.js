@@ -14,12 +14,12 @@ startBtn.addEventListener("click", () => {
   mainContainer.append(loaderContainer);
 
   //set timer to render html after loading bar completed
-  setTimeout(renderHTML, 3000, questionList);
+  setTimeout(renderMainContent, 3000, questionList);
 });
 
 //render page content
 let questionNumber = 0;
-function renderHTML(questionList) {
+function renderMainContent(questionList) {
   //update heading
   const newHeading = document.querySelector("h1");
   newHeading.innerHTML = "Choose the correct answer";
@@ -161,7 +161,7 @@ function renderHTML(questionList) {
   const nextQuestion = document.querySelector("#next");
   nextQuestion.addEventListener("click", () => {
     //render next question or last content when no more questions available
-    questionNumber < 10 ? renderNextQuestion() : renderLastContent();
+    questionNumber < 10 ? renderNextQuestion() : renderResults();
   });
 
   questionNumber++;
@@ -201,14 +201,14 @@ function renderNextQuestion() {
   ) {
     //add current points to total before rendering next question
     totalPoints += currentPoints;
-    renderHTML(questionList);
+    renderMainContent(questionList);
   } else {
     //alert user an option has to be chosen
     alert("Please choose an answer");
   }
 }
 
-function renderLastContent() {
+function renderResults() {
   //add point from last question
   totalPoints += currentPoints;
   //update heading
@@ -226,11 +226,67 @@ function renderLastContent() {
   mainContainer.classList.add("results-box");
 
   //print number of correct answers
-  const resultsPara = document.createElement("p");
-  resultsPara.innerHTML = `You got ${totalPoints}/10 questions right`;
-  resultsPara.style.textAlign = "center";
-  resultsPara.style.fontSize = "1.2rem";
-  mainContainer.append(resultsPara);
+  const subheading = document.createElement("h2");
+  subheading.innerHTML = `You got ${totalPoints}/10 questions right`;
+  subheading.style.textAlign = "center";
+  mainContainer.append(subheading);
+
+  renderAnswerKey(questionList);
+
+  //adjust flex container styles on body
+  mainContainer.style.flexDirection = "column";
+}
+
+function renderAnswerKey(questionList) {
+  //print questions with correct answers
+  const answerKey = document.createElement("ol");
+  mainContainer.append(answerKey);
+
+  for (let i = 0; i < questionList.length; i++) {
+    const quizItem = document.createElement("li");
+    quizItem.innerHTML = questionList[i].intro;
+    quizItem.innerHTML += " " + questionList[i].question;
+    quizItem.classList.add("answer-key-question");
+    quizItem.style.listStyleType = "decimal";
+    answerKey.append(quizItem);
+
+    //create list of possible answers
+    //container
+    const possibleAnswersContainer = document.createElement("ol");
+    quizItem.append(possibleAnswersContainer);
+
+    let possibleAnswer = questionList[i].options;
+
+    for (let j = 0; j < possibleAnswer.length; j++) {
+      let possibleAnswerLi = document.createElement("li");
+      possibleAnswerLi.innerHTML = questionList[i].options[j];
+      possibleAnswerLi.classList.add("answer-key-option");
+      possibleAnswersContainer.append(possibleAnswerLi);
+    }
+  }
+
+  /*   questionList.forEach((question) => {
+    const quizItem = document.createElement("li");
+    quizItem.innerHTML = question.intro;
+    quizItem.innerHTML += " " + question.question;
+    quizItem.classList.add("answer-key-question");
+    quizItem.style.listStyleType = "decimal";
+    answerKey.append(quizItem);
+
+    //create list of possible answers
+    //container
+    const possibleAnswersContainer = document.createElement("ol");
+    quizItem.append(possibleAnswersContainer);
+
+    let possibleAnswer = question.options;
+    console.log(possibleAnswer);
+
+    for (let i = 0; i < possibleAnswer.length; i++) {
+      possibleAnswer = document.createElement("li");
+      possibleAnswer.innerHTML = possibleAnswer[i];
+      possibleAnswersContainer.append(possibleAnswer[i]);
+    }
+  }); */
 
   //create restart button container
   const restartBtnContainer = document.createElement("div");
@@ -243,7 +299,22 @@ function renderLastContent() {
   restartBtn.classList.add("play-again");
   restartBtn.innerHTML = "PLAY AGAIN";
   restartBtnContainer.append(restartBtn);
-
-  //adjust flex container styles on body
-  mainContainer.style.flexDirection = "column";
 }
+
+/*     //answer one
+    let possibleAnswerOne = document.createElement("li");
+    possibleAnswerOne.innerHTML = question.options[0];
+    possibleAnswerOne.classList.add("answer-key-option");
+    possibleAnswersContainer.append(possibleAnswerOne);
+
+    //answer two
+    let possibleAnswerTwo = document.createElement("li");
+    possibleAnswerTwo.innerHTML = question.options[1];
+    possibleAnswerTwo.classList.add("answer-key-option");
+    possibleAnswersContainer.append(possibleAnswerTwo);
+
+    //answer three
+    let possibleAnswerThree = document.createElement("li");
+    possibleAnswerThree.innerHTML = question.options[2];
+    possibleAnswerThree.classList.add("answer-key-option");
+    possibleAnswersContainer.append(possibleAnswerThree); */

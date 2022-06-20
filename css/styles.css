@@ -6,7 +6,7 @@
 }
 
 html {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 body {
@@ -26,6 +26,10 @@ h1 {
   text-align: center;
 }
 
+h2 {
+  margin-bottom: 3rem;
+}
+
 .img-container {
   height: 150px;
   width: 100%;
@@ -36,6 +40,7 @@ figcaption {
   margin-left: 0.5rem;
   font-size: 0.8rem;
   max-width: 80%;
+  padding-top: 0.5rem;
 }
 
 img {
@@ -75,8 +80,27 @@ ul {
   margin: auto;
 }
 
+ol {
+  line-height: 1.5rem;
+}
+
 li {
   list-style-type: none;
+}
+
+.answer-key-question {
+  margin-bottom: 2rem;
+}
+
+.answer-key-option {
+  list-style-type: lower-alpha;
+  line-height: 2rem;
+}
+
+.answer-key-question::marker,
+.answer-key-option::marker {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 li label {
@@ -156,11 +180,12 @@ input[type="radio"] {
 
 .restart-container {
   margin: 5rem auto 3rem;
+  text-align: center;
 }
 
 .start,
 .play-again {
-  font: 1.5rem "Gruppo", cursive;
+  font: 1.2rem "Gruppo", cursive;
   padding: 0.5rem 3rem;
   background: var(--gradient);
   color: var(--white);
@@ -181,10 +206,10 @@ input[type="radio"] {
 .start::after,
 .play-again::after {
   content: ">>";
-  line-height: 2.5rem;
   font-weight: bold;
-  height: 3rem;
-  width: 3rem;
+  line-height: 2.2rem;
+  height: 2.5rem;
+  width: 2.5rem;
   background: var(--gradient);
   color: var(--white);
   border-radius: 2rem;
@@ -194,12 +219,6 @@ input[type="radio"] {
   transform: translateY(-50%);
   transition: var(--transitions);
   opacity: 0;
-}
-
-.play-again::after {
-  display: flex;
-  align-items: baseline;
-  justify-content: center;
 }
 
 .start:hover::after,
