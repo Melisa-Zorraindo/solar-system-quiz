@@ -8,7 +8,8 @@
     height: 200px;
   }
 
-  .question-box {
+  .question-box,
+  .results-box {
     max-width: 100%;
   }
 
@@ -20,6 +21,10 @@
 
   li {
     width: 20rem;
+  }
+
+  .results-box li {
+    width: 30rem;
   }
 
   .loader {

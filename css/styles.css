@@ -64,6 +64,10 @@ img {
   margin: auto;
 }
 
+.results-box {
+  max-width: 80%;
+}
+
 .question-box p {
   max-width: 350px;
   line-height: 1.5rem;
@@ -84,6 +88,7 @@ ul {
 
 ol {
   line-height: 1.5rem;
+  padding-left: 1rem;
 }
 
 li {
@@ -97,6 +102,7 @@ li {
 .answer-key-option {
   list-style-type: lower-alpha;
   line-height: 2rem;
+  margin-left: 0;
 }
 
 .answer-key-question::marker,
@@ -266,6 +272,14 @@ input[type="radio"] {
 
 a {
   text-decoration: none;
+}
+
+.checkmark {
+  background-color: #61f161;
+  color: var(--almost-black);
+  margin-left: 0.5rem;
+  border-radius: 2rem;
+  font-size: var(--larger-font-size);
 }
 
 footer {

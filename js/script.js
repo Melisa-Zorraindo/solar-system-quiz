@@ -208,6 +208,8 @@ function renderNextQuestion() {
   }
 }
 
+const finalContentContainer = document.querySelector(".final-content");
+
 function renderResults() {
   //add point from last question
   totalPoints += currentPoints;
@@ -223,24 +225,21 @@ function renderResults() {
 
   //clear content to create new
   mainContainer.innerHTML = "";
-  mainContainer.classList.add("results-box");
+  finalContentContainer.classList.add("results-box");
 
   //print number of correct answers
   const subheading = document.createElement("h2");
   subheading.innerHTML = `You got ${totalPoints}/10 questions right`;
   subheading.style.textAlign = "center";
-  mainContainer.append(subheading);
+  finalContentContainer.append(subheading);
 
   renderAnswerKey(questionList);
-
-  //adjust flex container styles on body
-  mainContainer.style.flexDirection = "column";
 }
 
 function renderAnswerKey(questionList) {
   //print questions with correct answers
   const answerKey = document.createElement("ol");
-  mainContainer.append(answerKey);
+  finalContentContainer.append(answerKey);
 
   for (let i = 0; i < questionList.length; i++) {
     const quizItem = document.createElement("li");
@@ -263,13 +262,21 @@ function renderAnswerKey(questionList) {
       possibleAnswerLi.innerHTML = questionList[i].options[j];
       possibleAnswerLi.classList.add("answer-key-option");
       possibleAnswersContainer.append(possibleAnswerLi);
+
+      //style correct answer
+      if (possibleAnswerLi.innerHTML === questionList[i].correctAnswer) {
+        let checkmark = document.createElement("span");
+        checkmark.innerHTML = " &#10004;";
+        checkmark.classList.add("checkmark");
+        possibleAnswerLi.append(checkmark);
+      }
     }
   }
 
   //create restart button container
   const restartBtnContainer = document.createElement("div");
   restartBtnContainer.classList.add("restart-container");
-  mainContainer.append(restartBtnContainer);
+  finalContentContainer.append(restartBtnContainer);
 
   //create button to restart the game
   const restartBtn = document.createElement("a");
