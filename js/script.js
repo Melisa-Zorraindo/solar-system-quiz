@@ -255,6 +255,7 @@ function renderAnswerKey(questionList) {
     const possibleAnswersContainer = document.createElement("ol");
     quizItem.append(possibleAnswersContainer);
 
+    //list items
     let possibleAnswer = questionList[i].options;
 
     for (let j = 0; j < possibleAnswer.length; j++) {
@@ -264,29 +265,6 @@ function renderAnswerKey(questionList) {
       possibleAnswersContainer.append(possibleAnswerLi);
     }
   }
-
-  /*   questionList.forEach((question) => {
-    const quizItem = document.createElement("li");
-    quizItem.innerHTML = question.intro;
-    quizItem.innerHTML += " " + question.question;
-    quizItem.classList.add("answer-key-question");
-    quizItem.style.listStyleType = "decimal";
-    answerKey.append(quizItem);
-
-    //create list of possible answers
-    //container
-    const possibleAnswersContainer = document.createElement("ol");
-    quizItem.append(possibleAnswersContainer);
-
-    let possibleAnswer = question.options;
-    console.log(possibleAnswer);
-
-    for (let i = 0; i < possibleAnswer.length; i++) {
-      possibleAnswer = document.createElement("li");
-      possibleAnswer.innerHTML = possibleAnswer[i];
-      possibleAnswersContainer.append(possibleAnswer[i]);
-    }
-  }); */
 
   //create restart button container
   const restartBtnContainer = document.createElement("div");
@@ -300,21 +278,3 @@ function renderAnswerKey(questionList) {
   restartBtn.innerHTML = "PLAY AGAIN";
   restartBtnContainer.append(restartBtn);
 }
-
-/*     //answer one
-    let possibleAnswerOne = document.createElement("li");
-    possibleAnswerOne.innerHTML = question.options[0];
-    possibleAnswerOne.classList.add("answer-key-option");
-    possibleAnswersContainer.append(possibleAnswerOne);
-
-    //answer two
-    let possibleAnswerTwo = document.createElement("li");
-    possibleAnswerTwo.innerHTML = question.options[1];
-    possibleAnswerTwo.classList.add("answer-key-option");
-    possibleAnswersContainer.append(possibleAnswerTwo);
-
-    //answer three
-    let possibleAnswerThree = document.createElement("li");
-    possibleAnswerThree.innerHTML = question.options[2];
-    possibleAnswerThree.classList.add("answer-key-option");
-    possibleAnswersContainer.append(possibleAnswerThree); */

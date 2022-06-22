@@ -3,6 +3,12 @@
   --almost-black: #242824;
   --gradient: linear-gradient(187deg, #310f38 0%, #821e97 63%, #971e84 100%);
   --transitions: all 0.4s linear;
+
+  /* fonts */
+  --font-family: "Gruppo", cursive;
+  --smaller-font-size: 0.8rem;
+  --larger-font-size: 1.2rem;
+  --largest-font-size: 2rem;
 }
 
 html {
@@ -19,7 +25,7 @@ body {
   height: 100vh;
   background-image: url("/assets/images/background-gb3a5ca660_1920.jpg");
   color: var(--white);
-  font-family: "Gruppo", cursive;
+  font-family: var(--font-family);
 }
 
 h1 {
@@ -38,7 +44,7 @@ h2 {
 
 figcaption {
   margin-left: 0.5rem;
-  font-size: 0.8rem;
+  font-size: var(--smaller-font-size);
   max-width: 80%;
   padding-top: 0.5rem;
 }
@@ -56,10 +62,6 @@ img {
   border-radius: 2rem;
   max-width: 80%;
   margin: auto;
-}
-
-.results-box {
-  max-width: 100%;
 }
 
 .question-box p {
@@ -99,7 +101,7 @@ li {
 
 .answer-key-question::marker,
 .answer-key-option::marker {
-  font-size: 1.2rem;
+  font-size: var(--larger-font-size);
   font-weight: bold;
 }
 
@@ -153,7 +155,7 @@ li label::after {
   left: 1rem;
   top: 50%;
   transform: translateY(-60%);
-  font-size: 2rem;
+  font-size: var(--largest-font-size);
 }
 
 li label:hover::after {
@@ -185,7 +187,8 @@ input[type="radio"] {
 
 .start,
 .play-again {
-  font: 1.2rem "Gruppo", cursive;
+  font-family: var(--font-family);
+  font-size: var(--larger-font-size);
   padding: 0.5rem 3rem;
   background: var(--gradient);
   color: var(--white);
@@ -228,7 +231,7 @@ input[type="radio"] {
 }
 
 .next {
-  font-size: 2rem;
+  font-size: var(--largest-font-size);
   background: var(--gradient);
   color: var(--white);
   cursor: pointer;
@@ -270,6 +273,7 @@ footer {
   text-align: center;
   align-self: flex-end;
   margin-bottom: 1rem;
+  font-size: var(--smaller-font-size);
 }
 
 footer a {
