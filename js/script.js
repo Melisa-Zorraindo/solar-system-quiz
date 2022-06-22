@@ -191,7 +191,21 @@ function updateSelectedOptionStyles() {
   }
 }
 
+const finalAnswers = [];
+function storeSelectedOptionValues() {
+  //store user answers to display in answer key
+  const chosenOption = document.querySelectorAll("input[type='radio']");
+  for (let i = 0; i < chosenOption.length; i++) {
+    if (chosenOption[i].checked) {
+      finalAnswers.push(chosenOption[i].value);
+    }
+  }
+}
+
 function renderNextQuestion() {
+  //store user's answers before rendering next question
+  storeSelectedOptionValues();
+
   //checked an option was chosen
   const answerOption = document.querySelectorAll("input[type='radio']");
   if (
@@ -211,6 +225,9 @@ function renderNextQuestion() {
 const finalContentContainer = document.querySelector(".final-content");
 
 function renderResults() {
+  //store user's last answer before rendering results
+  storeSelectedOptionValues();
+
   //add point from last question
   totalPoints += currentPoints;
   //update heading
@@ -256,7 +273,6 @@ function renderAnswerKey(questionList) {
 
     //list items
     let possibleAnswer = questionList[i].options;
-
     for (let j = 0; j < possibleAnswer.length; j++) {
       let possibleAnswerLi = document.createElement("li");
       possibleAnswerLi.innerHTML = questionList[i].options[j];
@@ -272,7 +288,7 @@ function renderAnswerKey(questionList) {
       }
     }
   }
-
+  console.log(finalAnswers);
   //create restart button container
   const restartBtnContainer = document.createElement("div");
   restartBtnContainer.classList.add("restart-container");
