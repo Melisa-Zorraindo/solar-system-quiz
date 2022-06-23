@@ -293,7 +293,6 @@ function renderAnswerKey(questionList) {
       }
     }
   }
-  console.log(finalAnswers);
   //create restart button container
   const restartBtnContainer = document.createElement("div");
   restartBtnContainer.classList.add("restart-container");
