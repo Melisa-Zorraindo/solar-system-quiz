@@ -206,7 +206,7 @@ function renderNextQuestion() {
   //store user's answers before rendering next question
   storeSelectedOptionValues();
 
-  //checked an option was chosen
+  //check an option was chosen
   const answerOption = document.querySelectorAll("input[type='radio']");
   if (
     answerOption[0].checked ||
@@ -282,9 +282,14 @@ function renderAnswerKey(questionList) {
       //style correct answer
       if (possibleAnswerLi.innerHTML === questionList[i].correctAnswer) {
         let checkmark = document.createElement("span");
-        checkmark.innerHTML = " &#10004;";
+        checkmark.innerHTML = " " + "&#10004;";
         checkmark.classList.add("checkmark");
         possibleAnswerLi.append(checkmark);
+      } else if (possibleAnswerLi.innerHTML === finalAnswers[i]) {
+        let cross = document.createElement("span");
+        cross.innerHTML = " " + "&#10008;";
+        cross.classList.add("cross");
+        possibleAnswerLi.append(cross);
       }
     }
   }

@@ -274,7 +274,8 @@ a {
   text-decoration: none;
 }
 
-.checkmark {
+.checkmark,
+.cross {
   background-color: #61f161;
   color: var(--almost-black);
   margin-left: 0.5rem;
@@ -282,12 +283,16 @@ a {
   font-size: var(--larger-font-size);
 }
 
+.cross {
+  background-color: #fc3333;
+}
+
 footer {
   flex: 0 0 100%;
   text-align: center;
   align-self: flex-end;
-  margin-bottom: 1rem;
   font-size: var(--smaller-font-size);
+  margin-bottom: 1rem;
 }
 
 footer a {
