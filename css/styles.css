@@ -180,6 +180,10 @@ input[type="radio"] {
   display: none;
 }
 
+.start-button-container {
+  text-align: center;
+}
+
 .btn-container {
   text-align: right;
   max-width: 95%;
