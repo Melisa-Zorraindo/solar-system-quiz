@@ -1,36 +1,33 @@
 # Solar System Quiz
+![solar-system-quiz-banner](https://user-images.githubusercontent.com/76968122/175547611-4e8431d6-00d4-4af5-bcd8-78584997032f.jpg)
 
-<!-- ![fitfactory-banner](https://user-images.githubusercontent.com/76968122/171186220-ed5b815b-cbe6-4451-87b5-2cf756aa4a93.png) -->
-Questions about the solar system
+Short quiz about our solar system
 
 ## Description
 
-Design and development of a quiz about the solar system.
+I developed this ten question quiz to practise some JavaScript concepts I learnt during the first year of FrontEnd Development at Noroff. I also learnt some useful JS properties and methods and CSS attributes during the development process. If you have any suggestions on how to improve the code or the design, don't hesitate to get in touch with me. If you want to have a go at improving the project yourself, feel free to fork the repo, but don't forget to share the final code with me so I can keep getting better!
+
+## JavaScript Concepts
+- ```document.createElement()```
+- ```element.append()```
+- ```element.setAttribute()```
+- ```setTimeout()```
+- ```push()```
+- ```node.nextSibling```
 
 <!-- ## [Link to live project](https://fitfactory-noroff-project.netlify.app/) -->
 
-<!-- ## Site architecture
-
-- Home page
-- Blog posts
-  - Specific post page
-- Calculators
-- Contact
-- About -->
 
 ## Built with
 
-![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 
 ![css](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 
-![javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
-
-## Designed with
-
-![adobe xd](https://img.shields.io/badge/Adobe%20XD-470137?style=for-the-badge&logo=Adobe%20XD&logoColor=#FF61F6)
+![html](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
 ![photoshop](https://img.shields.io/badge/Adobe%20Photoshop-31A8FF?style=for-the-badge&logo=Adobe%20Photoshop&logoColor=black)
+
 
 ## Contact
 
