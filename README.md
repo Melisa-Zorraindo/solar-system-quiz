@@ -15,7 +15,7 @@ I developed this ten question quiz to practise some JavaScript concepts I learnt
 - ```push()```
 - ```node.nextSibling```
 
-<!-- ## [Link to live project](https://fitfactory-noroff-project.netlify.app/) -->
+## [Link to live project](https://ss-quiz.netlify.app/)
 
 
 ## Built with
