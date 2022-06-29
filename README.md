@@ -7,6 +7,10 @@ Short quiz about our solar system
 
 I developed this ten question quiz to practise some JavaScript concepts I learnt during the first year of FrontEnd Development at Noroff. During the development process, I also learnt some new and useful JS properties and methods, as well as some CSS attributes. If you have any suggestions on how to improve the code or the design, don't hesitate to get in touch with me. If you want to have a go at improving the project yourself, feel free to fork the repo, but don't forget to share the final code with me so I can keep getting better!
 
+
+## [Link to live project](https://ss-quiz.netlify.app/)
+
+
 ## JavaScript Concepts
 - ```document.createElement()```
 - ```element.append()```
@@ -14,9 +18,6 @@ I developed this ten question quiz to practise some JavaScript concepts I learnt
 - ```setTimeout()```
 - ```push()```
 - ```node.nextSibling```
-
-## [Link to live project](https://ss-quiz.netlify.app/)
-
 
 ## Built with
 
