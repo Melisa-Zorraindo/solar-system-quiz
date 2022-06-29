@@ -30,10 +30,25 @@ body {
 
 h1 {
   text-align: center;
+  margin-bottom: 5rem;
 }
 
 h2 {
   margin-bottom: 3rem;
+}
+
+.lang-buttons {
+  margin-top: 1rem;
+}
+
+.lang {
+  border: none;
+  background-color: transparent;
+  color: var(--white);
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--smaller-font-size);
 }
 
 .img-container {

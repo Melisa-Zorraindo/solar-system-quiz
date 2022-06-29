@@ -1,11 +1,37 @@
 import { questionList } from "./data.js";
+import { listaPreguntas } from "./dataEs.js";
 
 const startBtn = document.querySelector("#start");
 const mainContainer = document.querySelector(".main-content");
+const enLangBtn = document.querySelector("#en");
+const esLangBtn = document.querySelector("#es");
+const heading = document.querySelector("h1");
+const footerPara = document.querySelector("footer p");
+
+//handle language selection
+let data = questionList;
+let lang = false;
+
+esLangBtn.addEventListener("click", () => {
+  data = listaPreguntas;
+  heading.innerHTML = "Click para empezar";
+  footerPara.innerHTML = "Desarrollado en 2022 por Melisa Zorraindo";
+  startBtn.innerHTML = "Empezar";
+  lang = true;
+});
+
+enLangBtn.addEventListener("click", () => {
+  data = questionList;
+  heading.innerHTML = "Click to start";
+  footerPara.innerHTML = "Developed in 2022 by Melisa Zorraindo";
+  startBtn.innerHTML = "Start";
+  lang = false;
+});
 
 startBtn.addEventListener("click", () => {
-  const heading = document.querySelector("h1");
-  heading.innerHTML = "Loading...";
+  lang === true
+    ? (heading.innerHTML = "Cargando...")
+    : (heading.innerHTML = "Loading...");
 
   //clear html and create loader bar
   mainContainer.innerHTML = "";
@@ -14,15 +40,16 @@ startBtn.addEventListener("click", () => {
   mainContainer.append(loaderContainer);
 
   //set timer to render html after loading bar completed
-  setTimeout(renderMainContent, 3000, questionList);
+  setTimeout(renderMainContent, 3000, data);
 });
 
 //render page content
 let questionNumber = 0;
-function renderMainContent(questionList) {
+function renderMainContent(data) {
   //update heading
-  const newHeading = document.querySelector("h1");
-  newHeading.innerHTML = "Choose the correct answer";
+  lang == true
+    ? (heading.innerHTML = "Elige la respuesta correcta")
+    : (heading.innerHTML = "Choose the correct answer");
 
   //clear html to render new one
   mainContainer.innerHTML = "";
@@ -39,23 +66,23 @@ function renderMainContent(questionList) {
 
   //create image
   const picture = document.createElement("img");
-  picture.src = questionList[questionNumber].image;
-  picture.alt = questionList[questionNumber].altText;
+  picture.src = data[questionNumber].image;
+  picture.alt = data[questionNumber].altText;
   imgContainer.append(picture);
 
   //create caption
   const pictureCaption = document.createElement("figcaption");
-  pictureCaption.innerHTML = questionList[questionNumber].altText;
+  pictureCaption.innerHTML = data[questionNumber].altText;
   imgContainer.append(pictureCaption);
 
   //create intro
   const introParagraph = document.createElement("p");
-  introParagraph.innerHTML = questionList[questionNumber].intro;
+  introParagraph.innerHTML = data[questionNumber].intro;
   questionBox.append(introParagraph);
 
   //create question
   const question = document.createElement("p");
-  question.innerHTML = questionList[questionNumber].question;
+  question.innerHTML = data[questionNumber].question;
   questionBox.append(question);
 
   //create options container
@@ -76,7 +103,7 @@ function renderMainContent(questionList) {
   radioBtnOne.type = "radio";
   radioBtnOne.name = "answer";
   radioBtnOne.id = "question-one";
-  radioBtnOne.value = questionList[questionNumber].options[0];
+  radioBtnOne.value = data[questionNumber].options[0];
   listItemOne.append(radioBtnOne);
 
   //create first label
@@ -87,7 +114,7 @@ function renderMainContent(questionList) {
 
   //create first option
   const optionOne = document.createElement("p");
-  optionOne.innerHTML = questionList[questionNumber].options[0];
+  optionOne.innerHTML = data[questionNumber].options[0];
   labelOne.append(optionOne);
 
   //create second list element
@@ -99,7 +126,7 @@ function renderMainContent(questionList) {
   radioBtnTwo.type = "radio";
   radioBtnTwo.name = "answer";
   radioBtnTwo.id = "question-two";
-  radioBtnTwo.value = questionList[questionNumber].options[1];
+  radioBtnTwo.value = data[questionNumber].options[1];
   listItemTwo.append(radioBtnTwo);
 
   //create second label
@@ -110,7 +137,7 @@ function renderMainContent(questionList) {
 
   //create second option
   const optionTwo = document.createElement("p");
-  optionTwo.innerHTML = questionList[questionNumber].options[1];
+  optionTwo.innerHTML = data[questionNumber].options[1];
   labelTwo.append(optionTwo);
 
   //create third list element
@@ -122,7 +149,7 @@ function renderMainContent(questionList) {
   radioBtnThree.type = "radio";
   radioBtnThree.name = "answer";
   radioBtnThree.id = "question-three";
-  radioBtnThree.value = questionList[questionNumber].options[2];
+  radioBtnThree.value = data[questionNumber].options[2];
   listItemThree.append(radioBtnThree);
 
   //create third label
@@ -133,7 +160,7 @@ function renderMainContent(questionList) {
 
   //create third option
   const optionThree = document.createElement("p");
-  optionThree.innerHTML = questionList[questionNumber].options[2];
+  optionThree.innerHTML = data[questionNumber].options[2];
   labelThree.append(optionThree);
 
   //create button container
@@ -174,7 +201,7 @@ function countPoints(button) {
   currentPoints = 0;
 
   //set variable to 0 every time user changes answer to avoid adding more than one point per question
-  const correctOption = questionList[questionNumber - 1].correctAnswer;
+  const correctOption = data[questionNumber - 1].correctAnswer;
   button.value === correctOption ? currentPoints++ : (currentPoints = 0);
 
   //styles for client feedback
@@ -215,7 +242,7 @@ function renderNextQuestion() {
   ) {
     //add current points to total before rendering next question
     totalPoints += currentPoints;
-    renderMainContent(questionList);
+    renderMainContent(data);
   } else {
     //alert user an option has to be chosen
     alert("Please choose an answer");
@@ -231,13 +258,19 @@ function renderResults() {
   //add point from last question
   totalPoints += currentPoints;
   //update heading
-  const lastHeading = document.querySelector("h1");
-  if (totalPoints < 5) {
-    lastHeading.innerHTML = "Better luck next time!";
-  } else if (totalPoints >= 5 && totalPoints < 8) {
-    lastHeading.innerHTML = "Really good!";
-  } else if (totalPoints >= 8) {
-    lastHeading.innerHTML = "Congrats!";
+  // const lastHeading = document.querySelector("h1");
+  if (totalPoints < 5 && lang === false) {
+    heading.innerHTML = "Better luck next time!";
+  } else if (totalPoints < 5 && lang === true) {
+    heading.innerHTML = "Mejor suerte la próxima!";
+  } else if (totalPoints >= 5 && totalPoints < 8 && lang === false) {
+    heading.innerHTML = "Really good!";
+  } else if (totalPoints >= 5 && totalPoints < 8 && lang === true) {
+    heading.innerHTML = "Muy bien!";
+  } else if (totalPoints >= 8 && lang === false) {
+    heading.innerHTML = "Congrats!";
+  } else if (totalPoints >= 9 && lang === true) {
+    heading.innerHTML = "Felicitaciones!";
   }
 
   //clear content to create new
@@ -246,22 +279,24 @@ function renderResults() {
 
   //print number of correct answers
   const subheading = document.createElement("h2");
-  subheading.innerHTML = `You got ${totalPoints}/10 questions right`;
+  lang === true
+    ? (subheading.innerHTML = `Respondiste ${totalPoints}/10 preguntas correctamente`)
+    : (subheading.innerHTML = `You got ${totalPoints}/10 questions right`);
   subheading.style.textAlign = "center";
   finalContentContainer.append(subheading);
 
-  renderAnswerKey(questionList);
+  renderAnswerKey(data);
 }
 
-function renderAnswerKey(questionList) {
+function renderAnswerKey(data) {
   //print questions with correct answers
   const answerKey = document.createElement("ol");
   finalContentContainer.append(answerKey);
 
-  for (let i = 0; i < questionList.length; i++) {
+  for (let i = 0; i < data.length; i++) {
     const quizItem = document.createElement("li");
-    quizItem.innerHTML = questionList[i].intro;
-    quizItem.innerHTML += " " + questionList[i].question;
+    quizItem.innerHTML = data[i].intro;
+    quizItem.innerHTML += " " + data[i].question;
     quizItem.classList.add("answer-key-question");
     quizItem.style.listStyleType = "decimal";
     answerKey.append(quizItem);
@@ -272,15 +307,15 @@ function renderAnswerKey(questionList) {
     quizItem.append(possibleAnswersContainer);
 
     //list items
-    let possibleAnswer = questionList[i].options;
+    let possibleAnswer = data[i].options;
     for (let j = 0; j < possibleAnswer.length; j++) {
       let possibleAnswerLi = document.createElement("li");
-      possibleAnswerLi.innerHTML = questionList[i].options[j];
+      possibleAnswerLi.innerHTML = data[i].options[j];
       possibleAnswerLi.classList.add("answer-key-option");
       possibleAnswersContainer.append(possibleAnswerLi);
 
       //style correct answer
-      if (possibleAnswerLi.innerHTML === questionList[i].correctAnswer) {
+      if (possibleAnswerLi.innerHTML === data[i].correctAnswer) {
         let checkmark = document.createElement("span");
         checkmark.innerHTML = " " + "&#10004;";
         checkmark.classList.add("checkmark");
@@ -302,6 +337,8 @@ function renderAnswerKey(questionList) {
   const restartBtn = document.createElement("a");
   restartBtn.setAttribute("href", "index.html");
   restartBtn.classList.add("play-again");
-  restartBtn.innerHTML = "PLAY AGAIN";
+  lang === true
+    ? (restartBtn.innerHTML = "DE NUEVO")
+    : (restartBtn.innerHTML = "PLAY AGAIN");
   restartBtnContainer.append(restartBtn);
 }
